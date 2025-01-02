@@ -1,3 +1,10 @@
+## Why RANKIFY?
+- Often I find it difficult to decide which decision I should be prioritizing and which not when we have too many decisions to take.  
+- But selecting which decision is important between any two decisions is always an easy task.
+- This same idea is what this project is implementing. 
+- We are creating bunch of decision cards. User will be show two cards at a time. User will select the high priority decision among given two decisions. System will maintain the list of ranked decision.
+- I am using `chess.com` elo rating algorithm to rank the decision. You can find more about it in this   [article](https://www.geeksforgeeks.org/elo-rating-algorithm/).    
+
 ## Backend
 Sequence of APIs to test
 1. Create decision Card (POST)
