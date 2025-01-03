@@ -1,10 +1,10 @@
 import express from "express";
 const app = express();
 import errorMiddleware from './middleware/Error.js'
-
+import cors from 'cors'
 
 app.use(express.json());
-
+app.use(cors())
 // Route imports
 import decisionCardRoutes from './routes/decision_card.routes.js'
 import eloRoutes from './routes/elo.routes.js'

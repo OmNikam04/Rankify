@@ -77,15 +77,24 @@ export const generatePairs = catchAsyncErrors(async (req, res, next) => {
  * Show a randomized pair of cards to the user.
  */
 export const showPair = catchAsyncErrors(async (req, res, next) => {
+  // Check if there are any pairs in the database
+  const totalPairs = await Pair.countDocuments();
+  if (totalPairs === 0) {
+    return next(new ErrorHandler('No pairs available in the database', 404));
+  }
+
   // Fetch one random pair that has not been shown yet
   const pair = await Pair.aggregate([
     { $match: { isShown: false } }, // Only consider pairs that have not been shown
     { $sample: { size: 1 } },       // Randomly select one pair
   ]);
 
-  // If there are no pairs to show, return an error
+  // If all pairs have been shown
   if (pair.length === 0) {
-    return next(new ErrorHandler('No pairs available to show', 404));
+    return res.status(200).json({
+      status: 'completed',
+      message: 'All pairs have been shown.',
+    });
   }
 
   const selectedPair = pair[0];
@@ -108,6 +117,7 @@ export const showPair = catchAsyncErrors(async (req, res, next) => {
     },
   });
 });
+
 
 /**
  * Ranking Update route

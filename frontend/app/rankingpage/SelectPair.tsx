@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { fetchPair, updateRanking } from "../lib/fetchData";
-import Card from "../ui/Card";
+import Card from "./Card";
 import Loader from "../ui/Loader";
 
 interface CardType {

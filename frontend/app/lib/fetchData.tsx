@@ -11,23 +11,39 @@ interface PairResponse {
   pair: [Card, Card];
 }
 
+
 interface RankingsResponse {
   rankings: Card[];
 }
+const BASE_URL = "http://localhost:5000/api/v1"
 
-export const fetchPair = async (): Promise<PairResponse> => {
-  const response = await axios.get("/api/elo/showpair");
+export const createCardApi = async(data:any) :Promise<void> =>{
+  const res = await axios.post(`${BASE_URL}/card`, data)
+  console.log("creating card", res)
+}
+
+export const getAllCardsApi = async() : Promise<any> =>{
+  const res = await axios.get(`${BASE_URL}/cards`)
+  return res.data.data
+}
+
+
+export const deleteCardByIdApi = async(id:any) : Promise<any> =>{
+  const res = await axios.delete(`${BASE_URL}/card/${id}`)
+  return res
+}
+
+export const generatePairsApi = async() : Promise<any> =>{
+  const res = await axios.get(`${BASE_URL}/generatePairs`)
+  return res
+}
+
+export const fetchPairApi = async (): Promise<PairResponse> => {
+  const response = await axios.get(`${BASE_URL}/showPair`);
   return response.data.data;
 };
 
-export const updateRanking = async (pairId: string, winnerId: string): Promise<void> => {
-  await axios.post("/api/elo/updateranking", {
-    pairId,
-    winnerId,
-  });
-};
-
-export const fetchRankings = async (): Promise<RankingsResponse> => {
-  const response = await axios.get("/api/elo/rankings");
-  return response.data;
+export const updateRankingApi = async (data:any): Promise<any> => {
+  const res = await axios.post(`${BASE_URL}/updateRanking`, data);
+  return res
 };
