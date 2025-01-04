@@ -4,11 +4,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { deleteCardByIdApi, generatePairsApi, getAllCardsApi } from "../lib/fetchData"
 import { Button } from "@/components/ui/button"
 import { MoveRightIcon, Trash2Icon } from 'lucide-react'
-import Link from "next/link"
-import { useRouter } from "next/router"
+import { useRouter } from 'next/navigation'
 
 export const CardList = () => {
     const queryClient = useQueryClient()
+    const router = useRouter()
 
     const cards = useQuery({ queryKey: ['cards'], queryFn: getAllCardsApi })
 
@@ -31,7 +31,7 @@ export const CardList = () => {
     const generatePairsMutation = useMutation({
         mutationFn: generatePairsApi,
         onSuccess: (data) => {
-            
+            router.push('/rankingpage')
         },
         onError: (error) => {
             console.error("Error generating pairs:", error);

@@ -29,7 +29,7 @@ const Ranking: React.FC = () => {
                   exit={{ opacity: 0, y: -50 }} // Adjusted for a more visible exit
                   layout
                   transition={{
-                    duration: 5.5, // Increased duration for slower animation
+                    duration: 1.5, // Increased duration for slower animation
                     ease: "easeInOut", // Smooth easing for a polished effect
                   }}
                   className="flex items-center gap-2 p-2 bg-white shadow-lg hover:shadow-xl transition-all w-full h-20"

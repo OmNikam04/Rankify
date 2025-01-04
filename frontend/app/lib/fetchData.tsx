@@ -8,7 +8,10 @@ interface Card {
 }
 
 interface PairResponse {
-  pair: [Card, Card];
+  status: string,
+  data:{
+    pair: [Card, Card];
+  }
 }
 
 
@@ -40,7 +43,7 @@ export const generatePairsApi = async() : Promise<any> =>{
 
 export const fetchPairApi = async (): Promise<PairResponse> => {
   const response = await axios.get(`${BASE_URL}/showPair`);
-  return response.data.data;
+  return response.data;
 };
 
 export const updateRankingApi = async (data:any): Promise<any> => {

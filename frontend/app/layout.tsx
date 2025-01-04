@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "./Providers";
+import Link from "next/link";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,22 +35,26 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className="min-h-screen flex flex-col">
         <Providers>        
-        <header className="bg-gray-800 text-white py-4 shadow-md">
+        <header className="bg-black text-white py-4 shadow-md">
           <nav className="container mx-auto flex justify-between">
-            <h1 className="text-xl text-white font-bold">Rankify</h1>
+            <h1 className="text-xl text-white font-bold">
+              <Link href={`/`}>
+                Rankify
+              </Link>
+            </h1>
             <div>
-              <a href="/" className="mr-4 hover:underline">
-                Home
-              </a>
-              <a href="/rankings" className="hover:underline">
-                Rankings
-              </a>
+              <Link href="/startpage" className="mr-4 hover:underline">
+                Add new decision
+              </Link>
+              <Link href="/rankingpage" className="hover:underline">
+                See rankings
+              </Link>
             </div>
           </nav>
         </header>
         <main className="container mx-auto flex-grow py-6">{children}</main>
-        <footer className="bg-gray-800 text-white py-4 text-center">
-          <p>&copy; 2025 ELO Decision Maker</p>
+        <footer className="bg-black text-white py-4 text-center">
+          <p>&copy; {(new Date().getFullYear())} Rankify by <Link href={`https://www.linkedin.com/in/om-nikam/`} target="_blank">Om Nikam</Link></p>
         </footer>
         </Providers>
       </body>
