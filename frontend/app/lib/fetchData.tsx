@@ -18,7 +18,8 @@ interface PairResponse {
 interface RankingsResponse {
   rankings: Card[];
 }
-const BASE_URL = "http://localhost:5000/api/v1"
+// const BASE_URL = "http://localhost:5000/api/v1"
+const BASE_URL = "https://rankify-pi5p.onrender.com/api/v1"
 
 export const createCardApi = async(data:any) :Promise<void> =>{
   const res = await axios.post(`${BASE_URL}/card`, data)
